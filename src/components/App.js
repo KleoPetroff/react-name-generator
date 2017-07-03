@@ -18,8 +18,6 @@ export default class App extends Component {
   }
 
   onClick(e) {
-
-    console.log('triggered');
     if (e.keyCode === 32) {
       fetch().then(name => {
         this.setState({name});

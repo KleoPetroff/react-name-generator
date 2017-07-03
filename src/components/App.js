@@ -41,7 +41,7 @@ export default class App extends Component {
       <div className={`${this.state.gradient} wrapper`}>
         <div className="centered">
           <div className="name">{this.state.name.name} {this.state.name.surname}</div>
-          <div>Press the Spacebar</div>
+          <div>Press Spacebar</div>
         </div>
       </div>
     )

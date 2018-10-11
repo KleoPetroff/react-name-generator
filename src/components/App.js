@@ -2,15 +2,15 @@ import React, {Component} from 'react';
 import './App.css';
 
 import gradients from '../helpers/data/gradients';
-import getRandomName from '../helpers/generateClass';
-import fetch from '../helpers/fetch';
+import generateGradient from '../helpers/generateClass';
+import fetchName from '../helpers/fetch';
 
 export default class App extends Component {
   constructor() {
     super();
 
     this.state = {
-      gradient: getRandomName(gradients),
+      gradient: generateGradient(gradients),
       name: ''
     }
 
@@ -19,15 +19,15 @@ export default class App extends Component {
 
   onClick(e) {
     if (e.keyCode === 32) {
-      fetch().then(name => {
+      fetchName().then(name => {
         this.setState({name});
-        this.setState({gradient: getRandomName(gradients)});
+        this.setState({gradient: generateGradient(gradients)});
       });
     }
   }
 
   componentDidMount() {
-    fetch().then(name => this.setState({name}));
+    fetchName().then(name => this.setState({name}));
 
     window.addEventListener('keyup', this.onClick, false);
   }

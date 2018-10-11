@@ -11,19 +11,25 @@ export default class App extends Component {
 
     this.state = {
       gradient: generateGradient(gradients),
-      name: ''
-    }
+      name: '',
+      fetching: false
+    };
 
     this.onClick = this.onClick.bind(this);
   }
 
   onClick(e) {
-    if (e.keyCode === 32) {
-      fetchName().then(name => {
-        this.setState({name});
-        this.setState({gradient: generateGradient(gradients)});
-      });
-    }
+    if (e.key !== 32 && this.state.fetching) return;
+
+    this.setState({fetching: true});
+    fetchName().then(name => {
+      this.setState({
+        fetching: false,
+        name,
+        gradient: generateGradient(gradients)
+      })
+    })
+      .catch(() => this.setState({fetching: false}));
   }
 
   componentDidMount() {
